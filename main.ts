@@ -23,80 +23,83 @@ function Start_of_Lore () {
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 1
-    animation.runImageAnimation(
-    mySprite,
-    [img`
-        . . . . . . f f f f . . . . . . 
-        . . . . f f e e e e f f . . . . 
-        . . . f e e e f f e e e f . . . 
-        . . f f f f f 2 2 f f f f f . . 
-        . . f f e 2 e 2 2 e 2 e f f . . 
-        . . f e 2 f 2 f f 2 f 2 e f . . 
-        . . f f f 2 2 e e 2 2 f f f . . 
-        . f f e f 2 f e e f 2 f e f f . 
-        . f e e f f e e e e f e e e f . 
-        . . f e e e e e e e e e e f . . 
-        . . . f e e e e e e e e f . . . 
-        . . e 4 f f f f f f f f 4 e . . 
-        . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-        . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
-        . . . . . f f f f f f . . . . . 
-        . . . . . f f . . f f . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f f f f . . . . . . 
-        . . . . f f e e e e f f . . . . 
-        . . . f e e e f f e e e f . . . 
-        . . . f f f f 2 2 f f f f . . . 
-        . . f f e 2 e 2 2 e 2 e f f . . 
-        . . f e 2 f 2 f f f 2 f e f . . 
-        . . f f f 2 f e e 2 2 f f f . . 
-        . . f e 2 f f e e 2 f e e f . . 
-        . f f e f f e e e f e e e f f . 
-        . f f e e e e e e e e e e f f . 
-        . . . f e e e e e e e e f . . . 
-        . . . e f f f f f f f f 4 e . . 
-        . . . 4 f 2 2 2 2 2 e d d 4 . . 
-        . . . e f f f f f f e e 4 . . . 
-        . . . . f f f . . . . . . . . . 
-        `,img`
-        . . . . . . f f f f . . . . . . 
-        . . . . f f e e e e f f . . . . 
-        . . . f e e e f f e e e f . . . 
-        . . f f f f f 2 2 f f f f f . . 
-        . . f f e 2 e 2 2 e 2 e f f . . 
-        . . f e 2 f 2 f f 2 f 2 e f . . 
-        . . f f f 2 2 e e 2 2 f f f . . 
-        . f f e f 2 f e e f 2 f e f f . 
-        . f e e f f e e e e f e e e f . 
-        . . f e e e e e e e e e e f . . 
-        . . . f e e e e e e e e f . . . 
-        . . e 4 f f f f f f f f 4 e . . 
-        . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-        . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
-        . . . . . f f f f f f . . . . . 
-        . . . . . f f . . f f . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f f f f . . . . . . 
-        . . . . f f e e e e f f . . . . 
-        . . . f e e e f f e e e f . . . 
-        . . . f f f f 2 2 f f f f . . . 
-        . . f f e 2 e 2 2 e 2 e f f . . 
-        . . f e f 2 f f f 2 f 2 e f . . 
-        . . f f f 2 2 e e f 2 f f f . . 
-        . . f e e f 2 e e f f 2 e f . . 
-        . f f e e e f e e e f f e f f . 
-        . f f e e e e e e e e e e f f . 
-        . . . f e e e e e e e e f . . . 
-        . . e 4 f f f f f f f f e . . . 
-        . . 4 d d e 2 2 2 2 2 f 4 . . . 
-        . . . 4 e e f f f f f f e . . . 
-        . . . . . . . . . f f f . . . . 
-        `],
-    200,
-    true
-    )
+    while (controller.up.isPressed()) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . . f f f f 2 2 f f f f . . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f f 2 f e f . . 
+            . . f f f 2 f e e 2 2 f f f . . 
+            . . f e 2 f f e e 2 f e e f . . 
+            . f f e f f e e e f e e e f f . 
+            . f f e e e e e e e e e e f f . 
+            . . . f e e e e e e e e f . . . 
+            . . . e f f f f f f f f 4 e . . 
+            . . . 4 f 2 2 2 2 2 e d d 4 . . 
+            . . . e f f f f f f e e 4 . . . 
+            . . . . f f f . . . . . . . . . 
+            `,img`
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . . f f f f 2 2 f f f f . . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e f 2 f f f 2 f 2 e f . . 
+            . . f f f 2 2 e e f 2 f f f . . 
+            . . f e e f 2 e e f f 2 e f . . 
+            . f f e e e f e e e f f e f f . 
+            . f f e e e e e e e e e e f f . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f e . . . 
+            . . 4 d d e 2 2 2 2 2 f 4 . . . 
+            . . . 4 e e f f f f f f e . . . 
+            . . . . . . . . . f f f . . . . 
+            `],
+        200,
+        true
+        )
+        break;
+    }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     let Shootingmode = 0
@@ -283,18 +286,101 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.down.onEvent(ControllerButtonEvent.Released, function () {
-    Direction = 100
+    Direction = 12
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.chestopenspirit, function (sprite, otherSprite) {
 	
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 4
+    while (controller.left.isPressed()) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e e f f . . . . 
+            . . . f 2 2 2 e d d 4 . . . . . 
+            . . . f 2 2 2 e d d e . . . . . 
+            . . . f 5 5 4 f e e f . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d e e e e e f . . . 
+            . . . f e 4 e d d 4 f . . . . . 
+            . . . f 2 2 e d d e f . . . . . 
+            . . f f 5 5 f e e f f f . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . . f f f . . . f f . . . . . 
+            `,img`
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e e f f . . . . 
+            . . . f 2 2 2 e d d 4 . . . . . 
+            . . . f 2 2 2 e d d e . . . . . 
+            . . . f 5 5 4 f e e f . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e d d 4 . . . . 
+            . . . f 2 2 2 2 e d d e . . . . 
+            . . f f 5 5 4 4 f e e f . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . . f f f . . . f f . . . . . 
+            `],
+        200,
+        true
+        )
+        break;
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSprite) {
     Value_1_or_0 += 1
     pause(100)
     Value_1_or_0 = 0
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    Direction = 13
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    Direction = 14
 })
 statusbars.onZero(StatusBarKind.Health, function (status) {
     animation.runImageAnimation(
@@ -433,12 +519,166 @@ statusbars.onZero(StatusBarKind.Health, function (status) {
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 3
+    while (controller.right.isPressed()) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . f f e e 4 4 4 e f . . . 
+            . . . . . 4 d d e 2 2 2 f . . . 
+            . . . . . e d d e 2 2 2 f . . . 
+            . . . . . f e e f 4 5 5 f . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . . . . f f f . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e e e d d d f . . . 
+            . . . . . f 4 d d e 4 e f . . . 
+            . . . . . f e d d e 2 2 f . . . 
+            . . . . f f f e e f 5 5 f f . . 
+            . . . . f f f f f f f f f f . . 
+            . . . . . f f . . . f f f . . . 
+            `,img`
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . f f e e 4 4 4 e f . . . 
+            . . . . . 4 d d e 2 2 2 f . . . 
+            . . . . . e d d e 2 2 2 f . . . 
+            . . . . . f e e f 4 5 5 f . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . . . . f f f . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . 4 d d e 4 4 4 e f . . . 
+            . . . . e d d e 2 2 2 2 f . . . 
+            . . . . f e e f 4 4 5 5 f f . . 
+            . . . . f f f f f f f f f f . . 
+            . . . . . f f . . . f f f . . . 
+            `],
+        200,
+        true
+        )
+        break;
+    }
 })
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
-	
+    Direction = 11
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 2
+    while (controller.down.isPressed()) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f f e 2 2 2 2 2 2 e e f . . 
+            . . f e 2 f f f f f f 2 e f . . 
+            . . f f f f e e e e f f f f . . 
+            . f f e f b f 4 4 f b f e f f . 
+            . f e e 4 1 f d d f 1 4 e e f . 
+            . . f e e d d d d d d e e f . . 
+            . . . f e e 4 4 4 4 e e f . . . 
+            . . e 4 f 2 2 2 2 2 2 f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f f e 2 2 2 2 2 2 e e f . . 
+            . f f e 2 f f f f f f 2 e f f . 
+            . f f f f f e e e e f f f f f . 
+            . . f e f b f 4 4 f b f e f . . 
+            . . f e 4 1 f d d f 1 4 e f . . 
+            . . . f e 4 d d d d 4 e f e . . 
+            . . f e f 2 2 2 2 e d d 4 e . . 
+            . . e 4 f 2 2 2 2 e d d e . . . 
+            . . . . f 4 4 5 5 f e e . . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . f f f . . . . . . . . . 
+            `,img`
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f f e 2 2 2 2 2 2 e e f . . 
+            . . f e 2 f f f f f f 2 e f . . 
+            . . f f f f e e e e f f f f . . 
+            . f f e f b f 4 4 f b f e f f . 
+            . f e e 4 1 f d d f 1 4 e e f . 
+            . . f e e d d d d d d e e f . . 
+            . . . f e e 4 4 4 4 e e f . . . 
+            . . e 4 f 2 2 2 2 2 2 f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f e e 2 2 2 2 2 2 e f f . . 
+            . f f e 2 f f f f f f 2 e f f . 
+            . f f f f f e e e e f f f f f . 
+            . . f e f b f 4 4 f b f e f . . 
+            . . f e 4 1 f d d f 1 4 e f . . 
+            . . e f e 4 d d d d 4 e f . . . 
+            . . e 4 d d e 2 2 2 2 f e f . . 
+            . . . e d d e 2 2 2 2 f 4 e . . 
+            . . . . e e f 5 5 4 4 f . . . . 
+            . . . . . f f f f f f f . . . . 
+            . . . . . . . . . f f f . . . . 
+            `],
+        200,
+        true
+        )
+        break;
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.entity, function (sprite, otherSprite) {
     sadasdsa = 1
@@ -705,10 +945,33 @@ statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.value = 100
 statusbar.attachToSprite(Ghost)
 forever(function () {
-    while (controller.up.isPressed()) {
+    while (Direction == 11) {
+        animation.runImageAnimation(
+        mySprite,
+        [img`
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `],
+        200,
+        true
+        )
         break;
     }
-    while (controller.down.isPressed()) {
+    while (Direction == 12) {
         animation.runImageAnimation(
         mySprite,
         [img`
@@ -728,64 +991,13 @@ forever(function () {
             . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . f f f f . . . . . . 
-            . . . . f f f 2 2 f f f . . . . 
-            . . . f f f 2 2 2 2 f f f . . . 
-            . . f f f e e e e e e f f f . . 
-            . . f f e 2 2 2 2 2 2 e e f . . 
-            . f f e 2 f f f f f f 2 e f f . 
-            . f f f f f e e e e f f f f f . 
-            . . f e f b f 4 4 f b f e f . . 
-            . . f e 4 1 f d d f 1 4 e f . . 
-            . . . f e 4 d d d d 4 e f e . . 
-            . . f e f 2 2 2 2 e d d 4 e . . 
-            . . e 4 f 2 2 2 2 e d d e . . . 
-            . . . . f 4 4 5 5 f e e . . . . 
-            . . . . f f f f f f f . . . . . 
-            . . . . f f f . . . . . . . . . 
-            `,img`
-            . . . . . . f f f f . . . . . . 
-            . . . . f f f 2 2 f f f . . . . 
-            . . . f f f 2 2 2 2 f f f . . . 
-            . . f f f e e e e e e f f f . . 
-            . . f f e 2 2 2 2 2 2 e e f . . 
-            . . f e 2 f f f f f f 2 e f . . 
-            . . f f f f e e e e f f f f . . 
-            . f f e f b f 4 4 f b f e f f . 
-            . f e e 4 1 f d d f 1 4 e e f . 
-            . . f e e d d d d d d e e f . . 
-            . . . f e e 4 4 4 4 e e f . . . 
-            . . e 4 f 2 2 2 2 2 2 f 4 e . . 
-            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-            . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
-            . . . . . f f f f f f . . . . . 
-            . . . . . f f . . f f . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . f f f f . . . . . . 
-            . . . . f f f 2 2 f f f . . . . 
-            . . . f f f 2 2 2 2 f f f . . . 
-            . . f f f e e e e e e f f f . . 
-            . . f e e 2 2 2 2 2 2 e f f . . 
-            . f f e 2 f f f f f f 2 e f f . 
-            . f f f f f e e e e f f f f f . 
-            . . f e f b f 4 4 f b f e f . . 
-            . . f e 4 1 f d d f 1 4 e f . . 
-            . . e f e 4 d d d d 4 e f . . . 
-            . . e 4 d d e 2 2 2 2 f e f . . 
-            . . . e d d e 2 2 2 2 f 4 e . . 
-            . . . . e e f 5 5 4 4 f . . . . 
-            . . . . . f f f f f f f . . . . 
-            . . . . . . . . . f f f . . . . 
             `],
         200,
         true
         )
         break;
     }
-    while (controller.right.isPressed()) {
+    while (Direction == 13) {
         animation.runImageAnimation(
         mySprite,
         [img`
@@ -805,64 +1017,13 @@ forever(function () {
             . . . . . f e e f 4 5 5 f . . . 
             . . . . . . f f f f f f . . . . 
             . . . . . . . f f f . . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . f f f f f f . . . . 
-            . . . . f f e e e e f 2 f . . . 
-            . . . f f e e e e f 2 2 2 f . . 
-            . . . f e e e f f e e e e f . . 
-            . . . f f f f e e 2 2 2 2 e f . 
-            . . . f e 2 2 2 f f f f e 2 f . 
-            . . f f f f f f f e e e f f f . 
-            . . f f e 4 4 e b f 4 4 e e f . 
-            . . f e e 4 d 4 1 f d d e f . . 
-            . . . f e e e e e d d d f . . . 
-            . . . . . f 4 d d e 4 e f . . . 
-            . . . . . f e d d e 2 2 f . . . 
-            . . . . f f f e e f 5 5 f f . . 
-            . . . . f f f f f f f f f f . . 
-            . . . . . f f . . . f f f . . . 
-            `,img`
-            . . . . . . f f f f f f . . . . 
-            . . . . f f e e e e f 2 f . . . 
-            . . . f f e e e e f 2 2 2 f . . 
-            . . . f e e e f f e e e e f . . 
-            . . . f f f f e e 2 2 2 2 e f . 
-            . . . f e 2 2 2 f f f f e 2 f . 
-            . . f f f f f f f e e e f f f . 
-            . . f f e 4 4 e b f 4 4 e e f . 
-            . . f e e 4 d 4 1 f d d e f . . 
-            . . . f e e e 4 d d d d f . . . 
-            . . . . f f e e 4 4 4 e f . . . 
-            . . . . . 4 d d e 2 2 2 f . . . 
-            . . . . . e d d e 2 2 2 f . . . 
-            . . . . . f e e f 4 5 5 f . . . 
-            . . . . . . f f f f f f . . . . 
-            . . . . . . . f f f . . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . f f f f f f . . . . 
-            . . . . f f e e e e f 2 f . . . 
-            . . . f f e e e e f 2 2 2 f . . 
-            . . . f e e e f f e e e e f . . 
-            . . . f f f f e e 2 2 2 2 e f . 
-            . . . f e 2 2 2 f f f f e 2 f . 
-            . . f f f f f f f e e e f f f . 
-            . . f f e 4 4 e b f 4 4 e e f . 
-            . . f e e 4 d 4 1 f d d e f . . 
-            . . . f e e e 4 d d d d f . . . 
-            . . . . 4 d d e 4 4 4 e f . . . 
-            . . . . e d d e 2 2 2 2 f . . . 
-            . . . . f e e f 4 4 5 5 f f . . 
-            . . . . f f f f f f f f f f . . 
-            . . . . . f f . . . f f f . . . 
             `],
         200,
         true
         )
         break;
     }
-    while (controller.left.isPressed()) {
+    while (Direction == 14) {
         animation.runImageAnimation(
         mySprite,
         [img`
@@ -882,64 +1043,12 @@ forever(function () {
             . . . f 5 5 4 f e e f . . . . . 
             . . . . f f f f f f . . . . . . 
             . . . . . . f f f . . . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . f f f f f f . . . . . . 
-            . . . f 2 f e e e e f f . . . . 
-            . . f 2 2 2 f e e e e f f . . . 
-            . . f e e e e f f e e e f . . . 
-            . f e 2 2 2 2 e e f f f f . . . 
-            . f 2 e f f f f 2 2 2 e f . . . 
-            . f f f e e e f f f f f f f . . 
-            . f e e 4 4 f b e 4 4 e f f . . 
-            . . f e d d f 1 4 d 4 e e f . . 
-            . . . f d d d e e e e e f . . . 
-            . . . f e 4 e d d 4 f . . . . . 
-            . . . f 2 2 e d d e f . . . . . 
-            . . f f 5 5 f e e f f f . . . . 
-            . . f f f f f f f f f f . . . . 
-            . . . f f f . . . f f . . . . . 
-            `,img`
-            . . . . f f f f f f . . . . . . 
-            . . . f 2 f e e e e f f . . . . 
-            . . f 2 2 2 f e e e e f f . . . 
-            . . f e e e e f f e e e f . . . 
-            . f e 2 2 2 2 e e f f f f . . . 
-            . f 2 e f f f f 2 2 2 e f . . . 
-            . f f f e e e f f f f f f f . . 
-            . f e e 4 4 f b e 4 4 e f f . . 
-            . . f e d d f 1 4 d 4 e e f . . 
-            . . . f d d d d 4 e e e f . . . 
-            . . . f e 4 4 4 e e f f . . . . 
-            . . . f 2 2 2 e d d 4 . . . . . 
-            . . . f 2 2 2 e d d e . . . . . 
-            . . . f 5 5 4 f e e f . . . . . 
-            . . . . f f f f f f . . . . . . 
-            . . . . . . f f f . . . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . f f f f f f . . . . . . 
-            . . . f 2 f e e e e f f . . . . 
-            . . f 2 2 2 f e e e e f f . . . 
-            . . f e e e e f f e e e f . . . 
-            . f e 2 2 2 2 e e f f f f . . . 
-            . f 2 e f f f f 2 2 2 e f . . . 
-            . f f f e e e f f f f f f f . . 
-            . f e e 4 4 f b e 4 4 e f f . . 
-            . . f e d d f 1 4 d 4 e e f . . 
-            . . . f d d d d 4 e e e f . . . 
-            . . . f e 4 4 4 e d d 4 . . . . 
-            . . . f 2 2 2 2 e d d e . . . . 
-            . . f f 5 5 4 4 f e e f . . . . 
-            . . f f f f f f f f f f . . . . 
-            . . . f f f . . . f f . . . . . 
             `],
         200,
         true
         )
         break;
     }
-    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
 })
 forever(function () {
     if (Value_1_or_0 == 1) {
