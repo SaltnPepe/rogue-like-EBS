@@ -7,6 +7,7 @@ namespace SpriteKind {
     export const ProjUpgradeOne = SpriteKind.create()
 }
 function Start_of_Lore () {
+    tiles.setTilemap(tilemap`CutsceneBG_map`)
     controller.startLightAnimation(light.rainbowAnimation, 500)
     controller.vibrate(500)
     story.startCutscene(function () {
@@ -104,7 +105,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     let Shootingmode = 0
     if (Shootingmode == 1) {
-        if (Direction == 1) {
+        if (Direction == 1 || Direction == 11) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . 3 3 3 3 3 3 3 . . . . 
@@ -124,7 +125,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 0, -100)
         }
-        if (Direction == 2) {
+        if (Direction == 2 || Direction == 12) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -144,7 +145,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 0, 100)
         }
-        if (Direction == 3) {
+        if (Direction == 3 || Direction == 13) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -163,7 +164,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . 1 1 3 . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 100, 0)
-        } else if (Direction == 4) {
+        } else if (Direction == 4 || Direction == 14) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -204,7 +205,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             `, mySprite, 0, 0)
         projectile.follow(Ghost, 50)
     } else {
-        if (Direction == 1) {
+        if (Direction == 1 || Direction == 11) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -224,7 +225,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 0, -110)
         }
-        if (Direction == 2) {
+        if (Direction == 2 || Direction == 12) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -244,7 +245,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 0, 110)
         }
-        if (Direction == 3) {
+        if (Direction == 3 || Direction == 13) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -263,7 +264,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 `, mySprite, 110, 0)
-        } else if (Direction == 4) {
+        } else if (Direction == 4 || Direction == 14) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -382,6 +383,11 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     Direction = 14
 })
+function Movement () {
+    if (Direction == 1 && Direction == 12) {
+        Direction = 1
+    }
+}
 statusbars.onZero(StatusBarKind.Health, function (status) {
     animation.runImageAnimation(
     Ghost,
@@ -708,7 +714,6 @@ let Direction = 0
 let statusbar: StatusBarSprite = null
 let Ghost: Sprite = null
 let mySprite: Sprite = null
-controller.moveSprite(mySprite)
 Start_of_Lore()
 tiles.setTilemap(tilemap`Level1`)
 scene.setBackgroundImage(img`
@@ -851,42 +856,10 @@ mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
+controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 mySprite.setBounceOnWall(false)
-let Sprite_door = sprites.create(img`
-    .......ffffffffffffffffff.......
-    ......ffeeeeeeeeeeeeeeeeff......
-    .....ffeeeeeeeeeeeeeeeeeeff.....
-    ....ffeeeeeeeeeeeeeeeeeeeeff....
-    ...ffeeeeeeeeeeeeeeeeeeeeeeff...
-    ..ffeeeeeeeeeeeeeeeeeeeeeeeeff..
-    .ffeeeeeeeeeeeeeeeeeeeeeeeeeeff.
-    .feeeeeeeeeeeeeeeeeeeeeeeeeeeef.
-    .f2e2eee2e22e2eeee2e22e2eee2e2f.
-    .f2ee222ef22ee2222ee22fe222ee2f.
-    .f22eeeeffe22eeeeee22effeeee22f.
-    .ff222fffefe22222222efefff222ff.
-    ..fffeeeeeffe222222effeeeeefff..
-    ..feeee22e2fffeeeefff2e22eeeef..
-    ..feeee22e2fffeeeefff2e22eeeef..
-    ..f22e22e2effeeeeeeffe2e22e22e..
-    .e22e22e22fffeeeeeefff22e22e22e.
-    .eee22222fffeeeeeeeefff22222eee.
-    .e22222effffeeeeeeeeffffe22222e.
-    ..ffeffffffeeeeeeeeeeffffffeff..
-    ..f2eefffffeeeeeeeeeefffffee2f..
-    ..f222ffffeeeeeeeeeeeeffff222f..
-    .eeeeeffffbbbddddddbbbffffeeeee.
-    .e22222ffbbddddddddddbbff22222e.
-    ee22222efbddddddddddddbfe22222ee
-    e22e2e22ebbddddddddddbbe22e2e22e
-    eeeeeeeebbbbbddddddbbbbbeeeeeeee
-    cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
-    cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
-    cccccccccccccccccccccccccccccccc
-    .cccccccccccccccccccccccccccccc.
-    ..cccccccccccccccccccccccccccc..
-    `, SpriteKind.Door)
+let Sprite_door = sprites.create(assets.image`Portal`, SpriteKind.Door)
 Sprite_door.setPosition(128, 0)
 controller.moveSprite(mySprite)
 let myMinimap = minimap.minimap(MinimapScale.Original, 50, 2)
@@ -922,24 +895,7 @@ Ghost.setPosition(126, 0)
 Ghost.setVelocity(-30, -30)
 Ghost.follow(mySprite, 30)
 Ghost.setStayInScreen(true)
-let inv_entrance = sprites.create(img`
-    f . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.entity)
+let inv_entrance = sprites.create(assets.image`Portal`, SpriteKind.entity)
 inv_entrance.setPosition(130, 58)
 statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.value = 100
