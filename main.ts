@@ -384,8 +384,18 @@ controller.left.onEvent(ControllerButtonEvent.Released, function () {
     Direction = 14
 })
 function Movement () {
-    if (Direction == 1 && Direction == 12) {
-        Direction = 1
+    if (Direction == 11) {
+        ListMovement.pop()
+        Direction = ListMovement.pop()
+    } else if (Direction == 12) {
+        ListMovement.pop()
+        Direction = ListMovement.pop()
+    } else if (Direction == 13) {
+        ListMovement.pop()
+        Direction = ListMovement.pop()
+    } else if (Direction == 14) {
+        ListMovement.pop()
+        Direction = ListMovement.pop()
     }
 }
 statusbars.onZero(StatusBarKind.Health, function (status) {
@@ -708,6 +718,7 @@ let counti = 0
 let Randomorg = 0
 let projcount = 0
 let sadasdsa = 0
+let ListMovement: number[] = []
 let Value_1_or_0 = 0
 let projectile: Sprite = null
 let Direction = 0
@@ -900,6 +911,10 @@ inv_entrance.setPosition(130, 58)
 statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.value = 100
 statusbar.attachToSprite(Ghost)
+forever(function () {
+    ListMovement.push(Direction)
+    Movement()
+})
 forever(function () {
     while (Direction == 11) {
         animation.runImageAnimation(
