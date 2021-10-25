@@ -12,8 +12,7 @@
         "arcade-character-animations": "github:microsoft/arcade-character-animations#v0.0.2",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1",
         "radio-broadcast": "*",
-        "controller": "*",
-        "animation": "*"
+        "controller": "*"
     },
     "files": [
         "main.blocks",
@@ -23,7 +22,8 @@
         "tilemap.g.jres",
         "tilemap.g.ts",
         "images.g.jres",
-        "images.g.ts"
+        "images.g.ts",
+        null
     ],
     "testFiles": [
         "test.ts"
