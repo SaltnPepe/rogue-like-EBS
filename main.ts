@@ -5,22 +5,9 @@ namespace SpriteKind {
     export const start = SpriteKind.create()
     export const chestopenspirit = SpriteKind.create()
     export const ProjUpgradeOne = SpriteKind.create()
-}
-function Start_of_Lore () {
-    tiles.setTilemap(tilemap`CutsceneBG_map`)
-    controller.startLightAnimation(light.rainbowAnimation, 500)
-    controller.vibrate(500)
-    story.startCutscene(function () {
-        story.cancelSpriteMovement(mySprite)
-        story.printDialog("1st of October 1991, it is raining outside and Sammy is having a hard time falling asleep. His parents are in the other room, drunk and arguing again. ", 80, 90, 160, 150, 15)
-        story.printDialog("Sam is trying to think about something that will make him happy and forget about the cruel world around him. ", 80, 90, 160, 150, 15)
-        story.printDialog("After a couple of minutes he opens his eyes and sees that he is not in his room but rather a different world.", 80, 90, 160, 150, 15)
-        story.setPagePauseLength(1000, 1000)
-        story.printDialog("Sammy: “Wow. Where am I!?”", 80, 90, 160, 150, 15)
-        story.printDialog("PRESS (A) TO SHOOT", 80, 90, 160, 150, 15)
-        story.printDialog("PRESS (B) TO INTERACT", 80, 90, 160, 150, 15)
-        story.setPagePauseLength(1000, 1000)
-    })
+    export const ProjUpgrade2 = SpriteKind.create()
+    export const MushroomUpgrade = SpriteKind.create()
+    export const MarbelUpgrade = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 1
@@ -99,8 +86,23 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+function Start_of_Lore () {
+    tiles.setTilemap(tilemap`CutsceneBG_map`)
+    controller.startLightAnimation(light.rainbowAnimation, 500)
+    controller.vibrate(500)
+    story.startCutscene(function () {
+        story.cancelSpriteMovement(mySprite)
+        story.printDialog("1st of October 1991, it is raining outside and Sammy is having a hard time falling asleep. His parents are in the other room, drunk and arguing again. ", 80, 90, 160, 150, 15)
+        story.printDialog("Sam is trying to think about something that will make him happy and forget about the cruel world around him. ", 80, 90, 160, 150, 15)
+        story.printDialog("After a couple of minutes he opens his eyes and sees that he is not in his room but rather a different world.", 80, 90, 160, 150, 15)
+        story.setPagePauseLength(1000, 1000)
+        story.printDialog("Sammy: Wow. Where am I!?", 80, 90, 160, 150, 15)
+        story.printDialog("PRESS (A) TO SHOOT", 80, 90, 160, 150, 15)
+        story.printDialog("PRESS (B) TO INTERACT", 80, 90, 160, 150, 15)
+        story.setPagePauseLength(1000, 1000)
+    })
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    let Shootingmode = 0
     if (Shootingmode == 1) {
         if (Direction == 1 || Direction == 11) {
             projectile = sprites.createProjectileFromSprite(img`
@@ -289,6 +291,10 @@ controller.down.onEvent(ControllerButtonEvent.Released, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.chestopenspirit, function (sprite, otherSprite) {
 	
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.MarbelUpgrade, function (sprite, otherSprite) {
+    Shootingmode = 8
+    Marbel.destroy()
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Direction = 4
     animation.runImageAnimation(
@@ -371,6 +377,138 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSpr
     pause(100)
     Value_1_or_0 = 0
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Chest, function (sprite, otherSprite) {
+    if (Chestvaluecount == 0) {
+        random2 = randint(0, 2)
+        pause(100)
+        Chestentity.setImage(img`
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ........bbbbbbbbbbbbbb........
+            .......be4444444444444b.......
+            .......be444444444444eb.......
+            .......bee4444444444eeb.......
+            .......bbbbbbbddbbbbbbb.......
+            .......bbbbbbbccbbbbbbb.......
+            .......bcccccbccbcccccb.......
+            .......bccccccbbccccccb.......
+            .......bccccccccccccccb.......
+            .......bccccccccccccccb.......
+            .......bbbbbbbbbbbbbbbb.......
+            .......beeeeeeeeeeeeeeb.......
+            c......beeeeeeeeeeeeeeb......c
+            .......bceeeeeeeeeeeecb.......
+            .......bbbbbbbbbbbbbbbb.......
+            ........bb..........bb........
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            ..............................
+            c.........c........c.........c
+            `)
+        if (random2 == 0) {
+            DrinkBrown = sprites.create(img`
+                ....................
+                ....................
+                ....................
+                ....................
+                ....................
+                ........1111........
+                .......14eee1.......
+                ......1eeeeee1......
+                .......11cc11.......
+                ........1ec1........
+                .......1eeee1.......
+                ......1ee4eee1......
+                .....1ee4eeeee1.....
+                ....1ee4eeeeeee1....
+                ....1eeeeeeeeee1....
+                ....1eeeeeeeecc1....
+                .....1eeeeeecc1.....
+                ......1eccccc1......
+                .......111111.......
+                ....................
+                `, SpriteKind.ProjUpgradeOne)
+            effects.confetti.startScreenEffect(500)
+            DrinkBrown.setPosition(408, 480)
+        } else if (random2 == 1) {
+            DrinkGold = sprites.create(img`
+                ....................
+                ....................
+                ....................
+                ....................
+                ....................
+                ........1111........
+                .......1dd551.......
+                .......155551.......
+                ........1441........
+                .......155551.......
+                .......15d551.......
+                ......15d55551......
+                ......1d555551......
+                ......15555551......
+                ......15555551......
+                ......15555551......
+                ......15555551......
+                .......155551.......
+                .......144441.......
+                ........1111........
+                `, SpriteKind.ProjUpgrade2)
+            DrinkGold.setPosition(408, 480)
+            effects.confetti.startScreenEffect(500)
+        } else if (random2 == 2) {
+            Mushrooms = sprites.create(img`
+                . . . . . . b b b b . . . . . . 
+                . . . . b b 3 3 3 3 b b . . . . 
+                . . . c b 3 3 3 3 1 1 b c . . . 
+                . . c b 3 3 3 3 3 1 1 1 b c . . 
+                . c c 1 1 1 3 3 3 3 1 1 3 c c . 
+                c c d 1 1 1 3 3 3 3 3 3 3 b c c 
+                c b d d 1 3 3 3 3 3 1 1 1 b b c 
+                c b b b 3 3 1 1 3 3 1 1 d d b c 
+                c b b b b d d 1 1 3 b d d d b c 
+                . c b b b b d d b b b b b b c . 
+                . . c c b b b b b b b b c c . . 
+                . . . . c c c c c c c c . . . . 
+                . . . . . . b 1 1 b . . . . . . 
+                . . . . . . b 1 1 b b . . . . . 
+                . . . . . b b d 1 1 b . . . . . 
+                . . . . . b d d 1 1 b . . . . . 
+                `, SpriteKind.MushroomUpgrade)
+            Mushrooms.setPosition(408, 480)
+            effects.confetti.startScreenEffect(500)
+        } else {
+            Marbel = sprites.create(img`
+                . . . . . b b b b b b . . . . . 
+                . . . b b 9 9 9 9 9 9 b b . . . 
+                . . b b 9 9 9 9 9 9 9 9 b b . . 
+                . b b 9 d 9 9 9 9 9 9 9 9 b b . 
+                . b 9 d 9 9 9 9 9 1 1 1 9 9 b . 
+                b 9 d d 9 9 9 9 9 1 1 1 9 9 9 b 
+                b 9 d 9 9 9 9 9 9 1 1 1 9 9 9 b 
+                b 9 3 9 9 9 9 9 9 9 9 9 1 9 9 b 
+                b 5 3 d 9 9 9 9 9 9 9 9 9 9 9 b 
+                b 5 3 3 9 9 9 9 9 9 9 9 9 d 9 b 
+                b 5 d 3 3 9 9 9 9 9 9 9 d d 9 b 
+                . b 5 3 3 3 d 9 9 9 9 d d 5 b . 
+                . b d 5 3 3 3 3 3 3 3 d 5 b b . 
+                . . b d 5 d 3 3 3 3 5 5 b b . . 
+                . . . b b 5 5 5 5 5 5 b b . . . 
+                . . . . . b b b b b b . . . . . 
+                `, SpriteKind.MarbelUpgrade)
+            Marbel.setPosition(408, 480)
+            effects.confetti.startScreenEffect(500)
+        }
+        Chestvaluecount = 1
+    }
+})
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     LastDirection = 13
 })
@@ -388,6 +526,9 @@ function Movement () {
         LastDirection = Direction
     }
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.MushroomUpgrade, function (sprite, otherSprite) {
+    Mushrooms.destroy()
+})
 statusbars.onZero(StatusBarKind.Health, function (status) {
     animation.runImageAnimation(
     Ghost,
@@ -600,6 +741,10 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.ProjUpgradeOne, function (sprite, otherSprite) {
+    Shootingmode = 1
+    DrinkBrown.destroy()
+})
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
     LastDirection = 11
 })
@@ -680,13 +825,18 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.ProjUpgrade2, function (sprite, otherSprite) {
+    DrinkGold.destroy()
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.entity, function (sprite, otherSprite) {
     sadasdsa = 1
     scene.centerCameraAt(128, 0)
+    controller.moveSprite(mySprite, 0, 0)
     pause(100)
     story.spriteMoveToLocation(mySprite, mySprite.x, 10, 30)
     pause(500)
     sadasdsa = 0
+    controller.moveSprite(mySprite)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     projcount = 1
@@ -696,15 +846,21 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 let c4 = 0
 let c3 = 0
 let c2 = 0
-let Chestopen2: Sprite = null
-let CHestopen1: Sprite = null
 let counti = 0
 let Randomorg = 0
 let projcount = 0
 let sadasdsa = 0
+let Mushrooms: Sprite = null
+let DrinkGold: Sprite = null
+let DrinkBrown: Sprite = null
+let Chestentity: Sprite = null
+let random2 = 0
+let Chestvaluecount = 0
 let Value_1_or_0 = 0
+let Marbel: Sprite = null
 let LastDirection = 0
 let projectile: Sprite = null
+let Shootingmode = 0
 let Direction = 0
 let statusbar: StatusBarSprite = null
 let Ghost: Sprite = null
@@ -889,8 +1045,21 @@ Ghost.setPosition(126, 0)
 Ghost.setVelocity(-30, -30)
 Ghost.follow(mySprite, 30)
 Ghost.setStayInScreen(true)
-let inv_entrance = sprites.create(assets.image`Portal`, SpriteKind.entity)
-inv_entrance.setPosition(130, 58)
+let inv_entrance = sprites.create(img`
+    . b . . . . . . . . . . . . . . . . . . 
+    . . . . . . b . . . . . . . . . . . . . 
+    b . . . . . . . . . . . . . . b . . . . 
+    . . . . b . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . 
+    . . b . . . . . . . . . . b . . . . . . 
+    . . . . . . . . . . . . . . . . . b . . 
+    . . . . . . . . . . . . . . . . . . . . 
+    . . . b . b . . . . . b . . . . . . . . 
+    . . . . . . . . b . . . . . . . . . . b 
+    . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . 
+    `, SpriteKind.entity)
+inv_entrance.setPosition(130, 49)
 statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 statusbar.value = 100
 statusbar.attachToSprite(Ghost)
@@ -1007,43 +1176,39 @@ forever(function () {
         Randomorg = randint(0, 3)
         if (Randomorg == 0) {
             if (counti < 1) {
-                CHestopen1 = sprites.create(img`
-                    3 3 3 3 3 3 3 . . . . . . . . . 
-                    . . . . . 3 3 3 3 3 3 3 3 3 . . 
-                    . . . . 3 3 . . . . . . . 3 3 . 
-                    . . . 3 3 3 . . . . 3 3 . . 3 . 
-                    . . . 3 3 3 . 3 3 3 3 3 3 3 3 . 
-                    . . . 3 3 3 3 . 3 . . . . 3 . . 
-                    . . 3 3 3 . . 3 . . 3 3 3 3 3 . 
-                    . 3 3 3 3 3 3 3 3 3 . 3 3 3 . . 
-                    3 . . 3 3 3 3 . . . 3 3 3 . . . 
-                    3 . . 3 3 3 . 3 3 3 3 3 3 . . . 
-                    3 . 3 3 3 3 3 3 3 3 3 . . . . . 
-                    . 3 3 3 3 3 . . 3 3 . . . . . . 
-                    . 3 3 . 3 3 3 3 . 3 3 3 3 3 3 . 
-                    . . 3 3 3 3 3 3 3 3 3 3 3 3 3 . 
-                    . . 3 3 3 3 3 3 3 3 3 3 3 3 . . 
-                    . . . . . . . . . . . . . . . . 
-                    `, SpriteKind.ProjUpgradeOne)
-                Chestopen2 = sprites.create(img`
-                    . . . . . . . . . . 3 3 . . . . 
-                    . . . 5 5 5 5 5 5 5 5 5 5 5 . . 
-                    . 5 5 5 5 5 . . . 5 5 5 3 5 5 . 
-                    5 5 5 5 5 5 5 5 5 . . . . 3 . . 
-                    5 3 . . . . 3 3 3 . . . . . 3 . 
-                    5 . . . . 3 . . 5 5 5 5 5 5 5 3 
-                    5 5 5 5 5 5 5 5 5 5 5 5 5 5 3 3 
-                    3 . 3 5 5 5 5 5 . 5 5 5 . . . 3 
-                    3 . 3 5 5 5 5 5 5 5 . 3 . . . 3 
-                    . 3 . 5 . . . 5 5 5 5 5 5 3 3 3 
-                    . 3 5 5 . . 5 3 3 3 5 5 5 . 3 3 
-                    . 3 . 5 5 5 5 5 5 5 5 . 3 3 3 . 
-                    . 3 . . 3 . . . 5 5 5 5 5 5 5 5 
-                    . . 3 3 . 3 3 3 3 3 3 3 . . . . 
-                    . . . . 3 . . . . . . . . . . . 
-                    . . . . . 3 3 3 . . . . . . . . 
-                    `, SpriteKind.chestopenspirit)
-                CHestopen1.setPosition(450, 390)
+                Chestentity = sprites.create(img`
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    .........bbbbbbbbbbbb.........
+                    ........be4444444444eb........
+                    .......be444444444444eb.......
+                    .......be444444444444eb.......
+                    .......be444444444444eb.......
+                    .......bee4444444444eeb.......
+                    .......beeeeeeeeeeeeeeb.......
+                    .......beeeeeeeeeeeeeeb.......
+                    .......bbbbbbbddbbbbbbb.......
+                    .......cbbbbbbccbbbbbbc.......
+                    .......ccccccbccbcccccc.......
+                    .......beeeeecbbceeeeeb.......
+                    c......beeeeeeeeeeeeeeb......c
+                    .......bceeeeeeeeeeeecb.......
+                    .......bbbbbbbbbbbbbbbb.......
+                    ........bb..........bb........
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    ..............................
+                    c.........c........c.........c
+                    `, SpriteKind.Chest)
+                Chestentity.setPosition(408, 441)
                 story.cancelSpriteMovement(mySprite)
                 scene.cameraFollowSprite(mySprite)
                 inv_entrance.destroy()
@@ -1171,7 +1336,7 @@ forever(function () {
                     ................................................................................................................................................................
                     ................................................................................................................................................................
                     `)
-                Sprite_door.setPosition(350, 420)
+                Sprite_door.setPosition(350, 430)
                 tiles.placeOnRandomTile(mySprite, sprites.dungeon.collectibleInsignia)
                 pause(100)
             }
@@ -1322,6 +1487,128 @@ forever(function () {
         }
         if (Randomorg == 3) {
             if (c4 < 1) {
+                scene.setBackgroundImage(img`
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+                    `)
                 scene.cameraFollowSprite(mySprite)
                 inv_entrance.destroy()
                 Sprite_door.setPosition(128, 30)
